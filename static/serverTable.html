@@ -1,0 +1,6 @@
+<td><center>{NAME}</center></td>
+<td><center>{Application}</center></td>
+<td><center>{STATUS}</center></td>
+<!-- States btn btn-warning = Stop (fa-stop), btn btn-success = Start (fa-play) --->
+<td><center><a class="btn btn-default  btn-flat" dataid="{Application}" onclick="startStopServer('0', '{UID}')" ><i class="fa fa-lg {STATEICON}"></i></a>  <a class="btn btn-info  btn-flat" dataid="{Application}" onclick="startStopServer('1', '{UID}')" ><i class="fa fa-lg fa-refresh"></i></a> <a class="btn btn-primary  btn-flat" href="#" data-toggle="modal" data-target="#editGameinfo" data-uid="{UID}" data-name="{NAME}" data-app="{Application}"  data-path="{PATH}" ><i class="fa fa-lg fa-pencil"></i></a> <a class="btn btn-danger  btn-flat" id="deleteServer" dataid="{Application}" onclick="deleteServer('{Application}')" ><i class="fa fa-lg fa-remove"></i></a></center></td>
+</tr>

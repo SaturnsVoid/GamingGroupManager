@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- CSS-->
+      <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>{CNAME} Control: Servers and Applications</title>
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+      <!--if lt IE 9
+         script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+         script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+         -->
+   </head>
+   <body class="sidebar-mini fixed">
+      <div class="wrapper">
+      <!-- Navbar-->
+      <header class="main-header hidden-print">
+         <a class="logo" href="./">{CNAME} Control</a>
+         <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button--><a class="sidebar-toggle" href="#" data-toggle="offcanvas"></a>
+            <!-- Navbar Right Menu-->
+            <div class="navbar-custom-menu">
+               <ul class="top-nav">
+                  <!-- User Menu-->
+                  <li class="dropdown">
+                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"> Profile</i></a>
+                     <ul class="dropdown-menu settings-menu">
+                        <li><a href="../logout"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+      <!-- Side-Nav-->
+      <aside class="main-sidebar hidden-print">
+         <section class="sidebar">
+            <div class="user-panel">
+               <div class="pull-left image"><img class="img-circle" src="../static/images/user.png" alt="User Image"></div>
+               <div class="pull-left info">
+                  <p>{USERNAME}</p>
+                  <p class="designation">{CNAME} Admin</p>
+               </div>
+            </div>
+            <!-- Sidebar Menu-->
+            <ul class="sidebar-menu">
+               <li><a href="/"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+               <li><a href="../roster"><i class="fa fa-users"></i><span>Member Roster</span></a></li>
+               <li class="active"><a href="../server"><i class="fa fa-server"></i><span>Servers and Applications</span></a></li>
+               <li><a href="../settings"><i class="fa fa-cogs"></i><span>Settings</span></a></li>
+               <li class="treeview">
+                  <a href="#"><i class="fa fa-cube"></i><span>Special Pages</span><i class="fa fa-angle-right"></i></a>
+                  <ul class="treeview-menu">
+                     <li><a href="/rollcall"><i class="fa fa-circle-o"></i> Member Roll Call</a></li>
+                     <li><a href="/ip"><i class="fa fa-circle-o"></i> Get your IP</a></li>
+                  </ul>
+               </li>
+            </ul>
+         </section>
+      </aside>
+      <div class="content-wrapper">
+      <div class="page-title">
+         <div class="div">
+            <h1><i class="fa fa-server"></i> Servers and Applications</h1>
+            <p>Configure and control Servers and Applications</p>
+         </div>
+         <div class="div">
+            <ul class="breadcrumb">
+               <li><i class="fa fa-dashboard fa-lg"></i></li>
+               <li><a href="#">Servers and Applications</a></li>
+            </ul>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-3">
+            <div class="widget-small primary">
+               <i class="icon fa fa-users fa-3x"></i>
+               <div class="info">
+                  <h4>Total Members</h4>
+                  <p><b>{MEMBERS}</b></p>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="widget-small info">
+               <i class="icon fa fa-keyboard-o fa-3x"></i>
+               <div class="info">
+                  <h4>Active Members</h4>
+                  <p><b>{ACTIVEMEMBERS}</b></p>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="widget-small warning">
+               <i class="icon fa fa-user-secret fa-3x"></i>
+               <div class="info">
+                  <h4>MIA Members</h4>
+                  <p><b>{MIAMEMBERS}</b></p>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-3">
+            <div class="widget-small danger">
+               <i class="icon fa fa-ban fa-3x"></i>
+               <div class="info">
+                  <h4>Banned Members</h4>
+                  <p><b>{BANNEDMEMBERS}</b></p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="col-md-6">
+               <div class="card">
+                  <div class="card-body">
+					   <div class="card-title-w-btn">
+              <h3 class="card-title">Servers and Applications</h3>
+			  <div class="tile-body">Up to 15sec to Update Status. (DOES NOT AUTO REFRESH)</div>
+			  				<p><a class="btn btn-primary icon-btn"  target="_blank" id="refreshServers" onClick="window.location.reload();"><i class=" fa fa-refresh "></i> Refresh</a></p>
+              </div>
+					 <table class="table table-hover table-bordered" id="serversTable">
+                        <thead>
+                           <tr>
+                              <th>
+                                 <center>Name</center>
+                              </th>
+                              <th>
+                                 <center>Application</center>
+                              </th>
+                              <th>
+                                 <center>Status</center>
+                              </th>
+							  <th>
+                                 <center>Options</center>
+                              </th>
+                           </tr>
+                        </thead>
+                        <!--ServersTable-->
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="card">
+                  <div class="card-title-w-btn">
+              <h3 class="card-title">Add Server or Application</h3>
+			  				<p><a class="btn btn-primary icon-btn"  target="_blank" id="helpSwal"><i class="fa fa-question"></i> Help</a></p>
+              </div>
+                  <div class="card-body">
+                     <form class="form-horizontal" id="addServer" method="POST" enctype="multipart/form-data" action="../addserver">
+                        <div class="form-group">
+                           <label class="control-label col-md-3">Name</label>
+                           <div class="col-md-8">
+                              <input class="form-control" type="text" name="sName" id="sName" placeholder="Example Program" required="">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label class="control-label col-md-3">Application</label>
+                           <div class="col-md-8">
+                              <input class="form-control" type="text" name="sApp" id="sApp" placeholder="example (Without extension)" required="">
+                           </div>
+                        </div>
+						<div class="form-group">
+                           <label class="control-label col-md-3">Location</label>
+                           <div class="col-md-8">
+                              <input class="form-control" type="text" name="sLoc" id="sLoc" placeholder="C:\example\example.exe" required="">
+                           </div>
+                        </div>
+                        <div class="card-footer">
+                           <div class="row">
+                              <div class="col-md-8 col-md-offset-3">
+                                 <button class="btn btn-primary icon-btn" type="submit"><i class="fa fa-fw fa-lg fa-plus"></i>Add Server</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-default icon-btn" href="#" onclick="resetAddGameForm()"><i class="fa fa-fw fa-lg fa-times-circle"></i>Clear Form</a>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>	  
+         </div>
+      </div>
+		 <div class="modal fade" id="editGameinfo" tabindex="-1" role="dialog" aria-labelledby="editServerinfoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="editServerinfoModalLabel">Edit Server or Application Info</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <form role="form" method="POST" id="editSServerinfo" action="../esinfo">
+                    <input type="hidden" name="sUID" value="">
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="sName" placeholder="Example Program"  value="" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Application</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="sApp"  placeholder="example (Without extension)" id="sApp" value="" required="">
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <label class="control-label">Location</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="sLoc" id="sLoc" placeholder="C:\example\example.exe" value="" required="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </div>
+                </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      <div>
+      <!-- Javascripts-->
+      <script src="../static/js/jquery-2.1.4.min.js"></script>
+      <script src="../static/js/bootstrap.min.js"></script>
+      <script src="../static/js/plugins/pace.min.js"></script>
+      <script src="../static/js/main.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/dataTables.bootstrap.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/select2.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/bootstrap-notify.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/sweetalert.min.js"></script>
+	  
+      <script type="text/javascript">
+	  
+	  
+	   $('#editGameinfo').on('show.bs.modal', function (event) {
+         var button = $(event.relatedTarget) // Button that triggered the modal
+         var sUID = button.data('uid') // Extract info from data-* attributes
+         var sName = button.data('name')
+		 var sApp = button.data('app')
+		 var sLoc = button.data('path')
+		 
+         var modal = $(this)
+		 modal.find('.modal-title').text('Edit Server or Application Info for ' + sName)
+         	modal.find('.modal-body input[name="sUID"]').val(sUID)	
+         	modal.find('.modal-body input[name="sName"]').val(sName)		
+			modal.find('.modal-body input[name="sApp"]').val(sApp)		
+			modal.find('.modal-body input[name="sLoc"]').val(sLoc)		
+         })
+	  
+	  
+	   <!--ERROR-->
+		 $('#serversTable').DataTable();
+		 
+		 
+		 
+		 $("#editSServerinfo").submit(function(event){
+         	event.preventDefault(); //prevent default action 
+         	var post_url = $(this).attr("action"); //get form action url
+         	var request_method = $(this).attr("method"); //get form GET/POST method
+         	var form_data = $(this).serialize(); //Encode form elements for submission
+         
+         	$.ajax({
+         		url : post_url,
+         		type: request_method,
+         		data : form_data
+         	}).done(function(response){
+         		swal("Success", "The server or application was successfully edited!", "success");
+         		setTimeout("location.reload(true);", 2000);
+         	}).error(function(response) {
+         		swal("Oops", "We couldn't connect to the server!", "error");
+         	});
+         });	
+		 
+		 $("#addServer").submit(function(event){
+			event.preventDefault(); //prevent default action 
+			var post_url = $(this).attr("action"); //get form action url
+			var request_method = $(this).attr("method"); //get form GET/POST method
+			var form_data = $(this).serialize(); //Encode form elements for submission
+	
+			$.ajax({
+				url : post_url,
+				type: request_method,
+				data : form_data
+			}).done(function(response){
+				swal("Added!", "Admin successfully added!", "success");
+				setTimeout("location.reload(true);", 2000);
+			}).error(function(response) {
+				swal("Oops", "We couldn't connect to the server!", "error");
+			});
+		});
+		 
+		 
+		 
+		 
+	function startStopServer(mode, server) {
+    swal({
+      title: "Are you sure?", 
+      text: "Are you sure that you want to change the state of this program or server?", 
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      confirmButtonText: "Yes",
+      confirmButtonColor: "#ec6c62"
+    }, function() {
+      $.ajax({
+       url: "../sserver?mode=" + mode + "&app=" + server,
+		method: "POST",
+      })
+      .done(function(data) {
+        swal("Success", "Command successfully issued, please wait a moment for it to take action.", "success");
+		 setTimeout("location.reload(true);", 2000);
+      })
+      .error(function(data) {
+        swal("Oops", "We couldn't connect to the main server!", "error");
+      });
+    });
+  }
+
+
+		 
+		function deleteServer(server) {
+    swal({
+      title: "All data will be lost!", 
+      text: "Are you sure that you want to delete this server?", 
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#ec6c62"
+    }, function() {
+      $.ajax({
+       url: "../delete?type=server&app=" + server,
+		method: "POST",
+      })
+      .done(function(data) {
+        swal("Deleted!", "The server was successfully deleted!", "success");
+		 setTimeout("location.reload(true);", 2000);
+      })
+      .error(function(data) {
+        swal("Oops", "We couldn't connect to the main server!", "error");
+      });
+    });
+  }
+         
+      </script>
+   </body>
+</html>
+

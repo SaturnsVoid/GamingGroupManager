@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{CNAME} Control</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    -->
+  </head>
+  <body class="sidebar-mini fixed">
+    <div class="wrapper">
+      <!-- Navbar-->
+      <header class="main-header hidden-print"><a class="logo" href="./">{CNAME} Control</a>
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button--><a class="sidebar-toggle" href="#" data-toggle="offcanvas"></a>
+          <!-- Navbar Right Menu-->
+          <div class="navbar-custom-menu">
+            <ul class="top-nav">
+              <!-- User Menu-->
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"> Profile</i></a>
+                <ul class="dropdown-menu settings-menu">
+                  <li><a href="../logout"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Side-Nav-->
+      <aside class="main-sidebar hidden-print">
+        <section class="sidebar">
+          <div class="user-panel">
+            <div class="pull-left image"><img class="img-circle" src="../static/images/user.png" alt="User Image"></div>
+            <div class="pull-left info">
+              <p>{USERNAME}</p>
+              <p class="designation">{CNAME} Admin</p>
+            </div>
+          </div>
+          <!-- Sidebar Menu-->
+           <ul class="sidebar-menu">
+            <li class="active"><a href="/"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+			<li><a href="../roster"><i class="fa fa-users"></i><span>Member Roster</span></a></li>
+			<li><a href="../server"><i class="fa fa-server"></i><span>Servers and Applications</span></a></li>
+			<li><a href="../settings"><i class="fa fa-cogs"></i><span>Settings</span></a></li>
+			<li class="treeview">
+                     <a href="#"><i class="fa fa-cube"></i><span>Special Pages</span><i class="fa fa-angle-right"></i></a>
+                     <ul class="treeview-menu">
+                        <li><a href="/rollcall"><i class="fa fa-circle-o"></i> Member Roll Call</a></li>
+						<li><a href="/ip"><i class="fa fa-circle-o"></i> Get your IP</a></li>
+                     </ul>
+                  </li>
+          </ul>
+        </section>
+      </aside>
+      <div class="content-wrapper">
+        <div class="page-title">
+          <div class="div">
+            <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
+            <p>{CNAME} Dashboard</p>
+          </div>
+          <div class="div">
+            <ul class="breadcrumb">
+              <li><i class="fa fa-dashboard fa-lg"></i></li>
+              <li><a href="../">Dashboard</a></li>
+            </ul>
+          </div>
+        </div>
+		<div class="row">
+          <div class="col-md-3">
+            <div class="widget-small primary"><i class="icon fa fa-users fa-3x"></i>
+              <div class="info">
+                <h4>Total Members</h4>
+                <p><b>{MEMBERS}</b></p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-3">
+                  <div class="widget-small info">
+                     <i class="icon fa fa-keyboard-o fa-3x"></i>
+                     <div class="info">
+                        <h4>Active Members</h4>
+                        <p><b>{ACTIVEMEMBERS}</b></p>
+                     </div>
+                  </div>
+               </div>
+          <div class="col-md-3">
+            <div class="widget-small warning"><i class="icon fa fa-user-secret fa-3x"></i>
+              <div class="info">
+                <h4>MIA Members</h4>
+                <p><b>{MIAMEMBERS}</b></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="widget-small danger"><i class="icon fa fa-ban fa-3x"></i>
+              <div class="info">
+                <h4>Banned Members</h4>
+                <p><b>{BANNEDMEMBERS}</b></p>
+              </div>
+            </div>
+          </div>
+        </div>	
+        <div class="row">
+          <div class="col-md-12">
+		  <div class="card">
+		  <h3 class="tile-title">Welcome</h3>
+            <div class="tile-body">Welcome to {CNAME} Control, here you can manage members and servers. All actions are logged to the admin log.</div>
+         
+		  </div>
+            <div class="card">
+              <div class="card-body">
+			  <form method="POST" action="./adminnotes">
+          <h3 class="card-title">Admin Notes</h3>
+              <div class="card-body"><textarea class="form-control" rows="10" name="adminNotes" id="adminNotes" style="overflow:auto; box-sizing:border-box">{NOTESTEXT}</textarea></div>
+          <div class="form-group btn-container">
+            <button class="btn btn-primary btn-block" id="updatenotes" type="submit" ><i class="fa fa-floppy-o  fa-lg fa-fw"></i>Save Notes</button>
+          </div>
+        </form>			  
+				</br>
+                 <h3 class="card-title">Admin Log</h3>
+              <div class="card-body"><textarea class="form-control" id="log" rows="20" style="overflow:auto; box-sizing:border-box">{LOGTEXT}</textarea></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Javascripts-->
+   <script src="../static/js/jquery-2.1.4.min.js"></script>
+      <script src="../static/js/bootstrap.min.js"></script>
+      <script src="../static/js/plugins/pace.min.js"></script>
+      <script src="../static/js/main.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/dataTables.bootstrap.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/select2.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/bootstrap-notify.min.js"></script>
+      <script type="text/javascript" src="../static/js/plugins/sweetalert.min.js"></script>
+	<script type="text/javascript">
+	
+	 $('form').submit(function(event) {
+         event.preventDefault();
+         var message = $("#adminNotes").val();
+         $.ajax({
+         type: "POST",
+         url: "./adminnotes",
+         data: "notes=" +message,
+         success : function(text){
+            if (text == "success"){
+                $.notify({
+         				title: "Success : ",
+         				message: "Notes updated!",
+         				icon: 'fa fa-check' 
+         				},{
+         					type: "success"
+         				});
+            }
+			if (text == "error"){
+                $.notify({
+         				title: "Error : ",
+         				message: "Was not able to update the notes!",
+         				icon: 'fa fa-exclamation' 
+         				},{
+         					type: "danger"
+         				});
+            }
+         }
+         });
+         });
+		 
+	</script>
+  </body>
+</html>

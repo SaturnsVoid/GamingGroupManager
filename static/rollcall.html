@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{CNAME}: Roll Call</title>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    -->
+  </head>
+  <body>
+    <section class="material-half-bg">
+      <div class="cover"></div>
+    </section>
+    <section class="login-content">
+      <div class="logo">
+        <h1>Roll Call</h1>
+      </div>
+	 <!--ERROR-->
+      <div class="login-box">
+        <form class="login-form" method="POST" action="/rollcall">
+          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-calendar-check-o"></i>Roll Call</h3>
+		   <div class="form-group">
+            <label class="control-label">Username</label>
+            <input class="form-control" type="text" name="username" placeholder="Your username" autofocus required>
+          </div>
+		  <div class="animated-checkbox">
+                <label>
+                  <input type="checkbox" name="c1" onclick="showMe('div1')"><span class="label-text">I am going to be away</span>
+                </label>
+              </div>
+			<div id="div1" style="display:none">
+				 <div class="form-group">
+            <input class="form-control" type="text" name="why" placeholder="Why? (Optinal)">
+          </div>
+			</div>
+		  <div class="form-group btn-container">
+            <button type="submit" class="btn btn-primary btn-block">Submit <i class="fa fa-paper-plane fa-lg"></i></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+  <script src="../static/js/jquery-2.1.4.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/plugins/pace.min.js"></script>
+  <script src="../static/js/main.js"></script>
+  <script>
+  
+  
+   function showMe (box) {
+        
+        var chboxs = document.getElementsByName("c1");
+        var vis = "none";
+        for(var i=0;i<chboxs.length;i++) { 
+            if(chboxs[i].checked){
+             vis = "block";
+                break;
+            }
+        }
+        document.getElementById(box).style.display = vis;
+    
+    
+    }
+	</script>
+</html>

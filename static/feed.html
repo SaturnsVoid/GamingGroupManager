@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS-->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    -->
+  </head>
+  <body">
+
+      <div class="content-wrapper">
+          <div class="col-md-3">
+            <div class="widget-small primary"><i class="icon fa fa-users fa-3x"></i>
+              <div class="info">
+                <h4>Total Members</h4>
+                <p><b>{MEMBERS}</b></p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-3">
+                  <div class="widget-small info">
+                     <i class="icon fa fa-keyboard-o fa-3x"></i>
+                     <div class="info">
+                        <h4>Active Members</h4>
+                        <p><b>{ACTIVEMEMBERS}</b></p>
+                     </div>
+                  </div>
+               </div>
+          <div class="col-md-3">
+            <div class="widget-small warning"><i class="icon fa fa-user-secret fa-3x"></i>
+              <div class="info">
+                <h4>MIA Members</h4>
+                <p><b>{MIAMEMBERS}</b></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="widget-small danger"><i class="icon fa fa-ban fa-3x"></i>
+              <div class="info">
+                <h4>Banned Members</h4>
+                <p><b>{BANNEDMEMBERS}</b></p>
+              </div>
+            </div>
+          </div>
+        </div>	
+  
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <table class="table table-hover table-bordered" id="membersTable">
+                  <thead>
+                    <tr>
+                      <th><center>Username</center></th>
+                      <th><center>Games</center></th>
+                      <th><center>Rank/Roll</center></th>
+                      <th><center>Status</center></th>
+                      <th><center>Last Roll Call</center></th>
+                      <th><center>Options</center></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   <!--{MEMBERSTABLE}-->
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+		
+    </div>
+	
+    <!-- Javascripts-->
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/plugins/pace.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script type="text/javascript" src="../static/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../static/js/plugins/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="../static/js/plugins/sweetalert.min.js"></script>
+    
+	<script type="text/javascript">
+	$('#membersTable').DataTable();
+
+  </script>
+  </body>
+</html>
