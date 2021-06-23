@@ -1,4 +1,4 @@
-# GamingGroupManager
+# Gaming Group Manager
 A tool to control gamming servers and programs while handling Member management. Written in Go. 
 
 NOTE THIS CURRENTLY WILL ONLY WORK FULLY ON WINDOWS BASED MECHINES, CAN BE EDITED TO RUN ON ANY SYSTEM.
